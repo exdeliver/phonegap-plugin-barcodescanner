@@ -53,6 +53,8 @@ public class BarcodeScanner extends CordovaPlugin {
     private static final String ORIENTATION = "orientation";
     private static final String SHOW_FLIP_CAMERA_BUTTON = "showFlipCameraButton";
     private static final String CONTINUOUS_MODE = "continuousMode";
+    private static final String SERVER_ADDRESS = "serverAddress";
+    private static final String CASHIER_CODE = "cashierCode";
     private static final String RESULTDISPLAY_DURATION = "resultDisplayDuration";
     private static final String SHOW_TORCH_BUTTON = "showTorchButton";
     private static final String TORCH_ON = "torchOn";
@@ -204,6 +206,12 @@ public class BarcodeScanner extends CordovaPlugin {
                         if (obj.has(ORIENTATION)) {
                             intentScan.putExtra(Intents.Scan.ORIENTATION_LOCK, obj.optString(ORIENTATION));
                         }
+                        if (obj.has(SERVER_ADDRESS)) {
+                            intentScan.putExtra(Intents.Scan.SERVER_ADDRESS, obj.optString(SERVER_ADDRESS));
+                        }
+                        if (obj.has(CASHIER_CODE)) {
+                            intentScan.putExtra(Intents.Scan.CASHIER_CODE, obj.optString(CASHIER_CODE));
+                        }
 
                         boolean isContinuous = obj.optBoolean(CONTINUOUS_MODE, false);
                         if (isContinuous) {
@@ -220,7 +228,7 @@ public class BarcodeScanner extends CordovaPlugin {
                                         Log.d(LOG_TAG, "This should never happen");
                                     }
                                     Toast toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
-                                    toast.setText(intent.getStringExtra(Intents.Scan.RESULT));
+                                    toast.setText(intent.getStringExtra(Intents.Scan.SERVER_ADDRESS));
                                     toast.show();
                                     PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
                                     result.setKeepCallback(true);
