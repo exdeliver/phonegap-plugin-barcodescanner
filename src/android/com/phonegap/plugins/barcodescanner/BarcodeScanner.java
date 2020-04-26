@@ -192,8 +192,7 @@ public class BarcodeScanner extends CordovaPlugin {
                         intentScan.putExtra(Intents.Scan.SHOW_TORCH_BUTTON, obj.optBoolean(SHOW_TORCH_BUTTON, false));
                         intentScan.putExtra(Intents.Scan.TORCH_ON, obj.optBoolean(TORCH_ON, false));
                         intentScan.putExtra(Intents.Scan.SAVE_HISTORY, obj.optBoolean(SAVE_HISTORY, false));
-                        intentScan.putExtra(Intents.Scan.SERVER_ADDRESS, obj.optString(SERVER_ADDRESS, "https://"));
-                        intentScan.putExtra(Intents.Scan.CASHIER_CODE, obj.optString(CASHIER_CODE, "FOO"));
+
                         boolean beep = obj.optBoolean(DISABLE_BEEP, false);
                         intentScan.putExtra(Intents.Scan.BEEP_ON_SCAN, !beep);
                         if (obj.has(RESULTDISPLAY_DURATION)) {
@@ -224,7 +223,7 @@ public class BarcodeScanner extends CordovaPlugin {
                                         Log.d(LOG_TAG, "This should never happen");
                                     }
                                     Toast toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
-                                    toast.setText(intent.getStringExtra(Intents.Scan.SERVER_ADDRESS));
+                                    toast.setText(obj.optString(SERVER_ADDRESS, "https://"));
                                     toast.show();
                                     PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
                                     result.setKeepCallback(true);
