@@ -208,9 +208,8 @@ public class BarcodeScanner extends CordovaPlugin {
                             intentScan.putExtra(Intents.Scan.ORIENTATION_LOCK, obj.optString(ORIENTATION));
                         }
 
-                        String serverAddress = obj.optString(SERVER_ADDRESS, "https://");
                         boolean isContinuous = obj.optBoolean(CONTINUOUS_MODE, false);
-                        intentScan.putExtra("SCAN_SERVER_ADDRESS", serverAddress);
+                        intentScan.putExtra("SCAN_SERVER_ADDRESS", obj.optString(SERVER_ADDRESS, "https://"));
                         if (isContinuous) {
                             intentScan.putExtra(Intents.Scan.BULK_SCAN, true);
                             BarcodeScanner.this.continuousModeBroadcastReceiver = new BroadcastReceiver() {
