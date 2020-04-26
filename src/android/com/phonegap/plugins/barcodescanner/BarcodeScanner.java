@@ -210,7 +210,7 @@ public class BarcodeScanner extends CordovaPlugin {
 
                         String serverAddress = obj.optString(SERVER_ADDRESS, "https://");
                         boolean isContinuous = obj.optBoolean(CONTINUOUS_MODE, false);
-                        intentScan.putExtra(Intents.Scan.EMAIL_TYPE, serverAddress);
+                        intentScan.putExtra("SCAN_SERVER_ADDRESS", serverAddress);
                         if (isContinuous) {
                             intentScan.putExtra(Intents.Scan.BULK_SCAN, true);
                             BarcodeScanner.this.continuousModeBroadcastReceiver = new BroadcastReceiver() {
@@ -225,7 +225,7 @@ public class BarcodeScanner extends CordovaPlugin {
                                         Log.d(LOG_TAG, "This should never happen");
                                     }
                                     Toast toast = Toast.makeText(context, "", Toast.LENGTH_SHORT);
-                                    toast.setText(intent.getStringExtra(Intents.Scan.EMAIL_TYPE));
+                                    toast.setText(intent.getStringExtra("SCAN_SERVER_ADDRESS"));
                                     toast.show();
                                     PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
                                     result.setKeepCallback(true);
