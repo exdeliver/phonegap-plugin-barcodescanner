@@ -22,7 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.content.Context;
 import android.support.v4.content.LocalBroadcastManager;
-import android.widget.Toast;  
+import android.widget.Toast;
 
 
 import org.apache.cordova.CordovaPlugin;
@@ -192,6 +192,8 @@ public class BarcodeScanner extends CordovaPlugin {
                         intentScan.putExtra(Intents.Scan.SHOW_TORCH_BUTTON, obj.optBoolean(SHOW_TORCH_BUTTON, false));
                         intentScan.putExtra(Intents.Scan.TORCH_ON, obj.optBoolean(TORCH_ON, false));
                         intentScan.putExtra(Intents.Scan.SAVE_HISTORY, obj.optBoolean(SAVE_HISTORY, false));
+                        intentScan.putExtra(Intents.Scan.SERVER_ADDRESS, obj.optString(SERVER_ADDRESS, "https://"));
+                        intentScan.putExtra(Intents.Scan.CASHIER_CODE, obj.optString(CASHIER_CODE, "FOO"));
                         boolean beep = obj.optBoolean(DISABLE_BEEP, false);
                         intentScan.putExtra(Intents.Scan.BEEP_ON_SCAN, !beep);
                         if (obj.has(RESULTDISPLAY_DURATION)) {
@@ -205,12 +207,6 @@ public class BarcodeScanner extends CordovaPlugin {
                         }
                         if (obj.has(ORIENTATION)) {
                             intentScan.putExtra(Intents.Scan.ORIENTATION_LOCK, obj.optString(ORIENTATION));
-                        }
-                        if (obj.has(SERVER_ADDRESS)) {
-                            intentScan.putExtra(Intents.Scan.SERVER_ADDRESS, obj.optString(SERVER_ADDRESS));
-                        }
-                        if (obj.has(CASHIER_CODE)) {
-                            intentScan.putExtra(Intents.Scan.CASHIER_CODE, obj.optString(CASHIER_CODE));
                         }
 
                         boolean isContinuous = obj.optBoolean(CONTINUOUS_MODE, false);
