@@ -217,6 +217,8 @@ public class BarcodeScanner extends CordovaPlugin {
                                     } catch (JSONException e) {
                                         Log.d(LOG_TAG, "This should never happen");
                                     }
+                                     Toast toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+
                                                     toast.setText("FOOBAR");
                                 toast.show();
                                     PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
