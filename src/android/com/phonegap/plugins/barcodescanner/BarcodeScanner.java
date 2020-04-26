@@ -217,6 +217,8 @@ public class BarcodeScanner extends CordovaPlugin {
                                     } catch (JSONException e) {
                                         Log.d(LOG_TAG, "This should never happen");
                                     }
+                                                    toast.setText(data.getExtras().getString("message"));
+                                toast.show();
                                     PluginResult result = new PluginResult(PluginResult.Status.OK, obj);
                                     result.setKeepCallback(true);
                                     callbackContext.sendPluginResult(result);
