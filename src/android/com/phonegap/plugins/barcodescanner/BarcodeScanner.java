@@ -22,6 +22,8 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.content.Context;
 import android.support.v4.content.LocalBroadcastManager;
+import android.widget.Toast;  
+
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
